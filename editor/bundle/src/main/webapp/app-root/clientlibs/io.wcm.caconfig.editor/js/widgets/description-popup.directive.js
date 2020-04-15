@@ -17,7 +17,7 @@
  * limitations under the License.
  * #L%
  */
-(function (angular) {
+(function (angular, Coral) {
   "use strict";
 
   /**
@@ -34,9 +34,9 @@
   angular.module("io.wcm.caconfig.widgets")
     .directive("caconfigDescriptionPopup", descriptionPopup);
 
-  descriptionPopup.$inject = ["$document", "templateUrlList", "utilities", "uiService"];
+  descriptionPopup.$inject = ["$document", "templateUrlList", "uiService"];
 
-  function descriptionPopup($document, templateList, utilities, uiService) {
+  function descriptionPopup($document, templateList, uiService) {
 
     var directive = {
       restrict: "E",
@@ -49,7 +49,7 @@
     return directive;
 
     function link(scope, element) {
-      scope.id = utilities.nextUid();
+      scope.id = Coral.commons.getUID();
       scope.$evalAsync(function () {
         uiService.addUI(uiService.component.POPOVER, scope.id, {
           element: $document.find("coral-Popover", element)
@@ -57,4 +57,4 @@
       });
     }
   }
-}(angular));
+}(angular, Coral));

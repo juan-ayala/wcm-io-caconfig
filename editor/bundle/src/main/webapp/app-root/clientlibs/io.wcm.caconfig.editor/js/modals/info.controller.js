@@ -31,7 +31,6 @@
 
     modalService.addModal(modalService.modal.INFO, {
       element: "#caconfig-infoModal",
-      type: "info",
       visible: false
     });
 

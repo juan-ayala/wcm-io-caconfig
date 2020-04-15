@@ -94,17 +94,18 @@ span.caconfig-pathbrowser {
   width: 100%;
 }
 
-#caconfig-addConfigModal {
+/* #caconfig-addConfigModal {
   width: 500px;
-}
+} */
 
-#caconfig-addConfigModal .coral-Select {
+#caconfig-addConfigModal .coral-Select,
+#caconfig-addConfigModal .coral3-Select {
   width: 100%;
 }
 
-#caconfig-addConfigModal .caconfig-addConfigModal-body {
+/* #caconfig-addConfigModal .caconfig-addConfigModal-body {
   overflow-y: visible;
-}
+} */
 
 .caconfig-configTable {
   margin-top: 10px;
@@ -169,8 +170,12 @@ span.caconfig-pathbrowser {
 }
 
 .caconfig-dummy-taglist .coral-TagList-tag,
-.caconfig-dummy-taglist .coral-TagList-tag-removeButton {
+.caconfig-dummy-taglist .coral3-Tag,
+.caconfig-dummy-taglist .coral-TagList-tag-removeButton,
+.caconfig-dummy-taglist .coral3-Tag-removeButton {
   color: #bebebe;
+  border-color: #e6e6e6;
+  background-color: #f0f0f0;
   text-shadow: none;
   cursor: default;
   pointer-events: none;

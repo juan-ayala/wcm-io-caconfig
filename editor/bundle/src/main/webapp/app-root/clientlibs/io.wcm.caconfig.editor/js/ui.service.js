@@ -17,7 +17,7 @@
  * limitations under the License.
  * #L%
  */
-(function (angular, CUI) {
+(function (angular, Coral) {
   "use strict";
 
   /**
@@ -33,7 +33,7 @@
     var ui = {};
 
     that.component = {
-      MODAL: "Modal",
+      MODAL: "Dialog",
       POPOVER: "Popover",
       SELECT: "Select",
       TAG_LIST: "TagList"
@@ -50,11 +50,20 @@
      * @param {String} componentType
      * @param {String} componentName
      * @param {Object=} options
-     * @return {CUI.Widget} ui[componentType][componentName] - widget instance
+     * @return {Coral.Component} ui[componentType][componentName] - widget instance
      */
     that.addUI = function (componentType, componentName, options) {
       ui[componentType] = ui[componentType] || {};
-      ui[componentType][componentName] = new CUI[componentType](options);
+
+      if (options.element instanceof angular.element) {
+        ui[componentType][componentName] = options.element[0];
+      }
+      else if (options.element instanceof HTMLElement) {
+        ui[componentType][componentName] = options.element;
+      }
+      else if (typeof options.element === "string") {
+        ui[componentType][componentName] = $document.find(options.element)[0];
+      }
       return ui[componentType][componentName];
     };
 
@@ -67,7 +76,10 @@
      * @param {Function} callback
      */
     that.onEvent = function (componentType, componentName, eventName, callback) {
-      ui[componentType][componentName].on(eventName, callback);
+      var component = ui[componentType][componentName];
+      Coral.commons.ready(component, function () {
+        component.on(eventName, callback);
+      });
     };
 
     /**
@@ -78,7 +90,7 @@
      */
     that.triggerEvent = function (componentType, componentName, eventName, data) {
       data = data || {};
-      ui[componentType][componentName].$element.trigger(eventName, data);
+      ui[componentType][componentName].trigger(eventName, data);
     };
 
     /**
@@ -103,4 +115,4 @@
       $document.find(".caconfig-loading").hide();
     };
   }
-}(angular, CUI));
+}(angular, Coral));

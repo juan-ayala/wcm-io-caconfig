@@ -81,7 +81,8 @@
   width: 100%;
 }
 
-.coral-Table .coral-Select {
+.coral-Table .coral-Select,
+.coral-Table .coral3-Select {
   width: 100%;
 }
 
