@@ -54,12 +54,7 @@
   background: #f0f0f0;
 }
 
-.coral-Table--hover tbody .coral-Table-row:hover {
-  border: 1px solid #ced7e3;
-  background-color: rgba(50,110,200,0.15);
-  cursor: pointer;
-}
-
+.coral-Table--hover tbody .coral-Table-row:hover,
 .coral-Table--hover tbody .coral-Table-row:hover .coral-Table-headerCell {
   border: 1px solid #ced7e3;
   background-color: rgba(50,110,200,0.15);
